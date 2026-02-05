@@ -9,4 +9,4 @@ Confirm that R, Quarto, GitHub, and rendering all work.
 
 ## R works
 ```{r}
-1 + 1
+1 + 2
