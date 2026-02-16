@@ -1,8 +1,7 @@
 name: Render Quarto (PR)
 
 on:
-  pull_request:
-    branches: [ "main" ]
+  workflow_dispatch: # we deleted OG lines 4 and 5 that said pull_request: and branches:["main"]
 
 jobs:
   render:
