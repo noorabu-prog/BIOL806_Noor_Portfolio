@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Noor Abuzahriyeh">
-<meta name="dcterms.date" content="2026-02-26">
+<meta name="dcterms.date" content="2026-03-03">
 
 <title>a02</title>
 <style>
@@ -87,6 +87,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#about-the-data-used" id="toc-about-the-data-used" class="nav-link" data-scroll-target="#about-the-data-used">About the data used</a></li>
   </ul></li>
   <li><a href="#read-in-the-data" id="toc-read-in-the-data" class="nav-link" data-scroll-target="#read-in-the-data">Read in the data</a></li>
+  <li><a href="#analysis-on-tidiness-of-data" id="toc-analysis-on-tidiness-of-data" class="nav-link" data-scroll-target="#analysis-on-tidiness-of-data">Analysis on tidiness of data</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul>
 </nav>
 </div>
@@ -112,7 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 26, 2026</p>
+      <p class="date">March 3, 2026</p>
     </div>
   </div>
   
@@ -134,7 +136,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
-<p>This Quarto document follows the <strong>Week 5 Assignment 2 practice with Tidy Data.</strong> This document will explore whether a data set I have follows the Tidy Data principles. To recap, the three Tidy Data principles are as follows:</p>
+<p>This Quarto document follows the <strong>Week 5 Assignment 2 practice with Tidy Data.</strong> In short, tidy data is a framework for organizing data that makes it straightforward and easy to follow. This document will explore whether a data set I have follows the Tidy Data principles. To recap, the three Tidy Data principles are as follows:</p>
 <ol type="1">
 <li><p>Each column has is one variable</p></li>
 <li><p>Each row is one observation.</p></li>
@@ -166,19 +168,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 [7] "concentration.of.cells.plated..cells.mL."
 [8] "Notes"                                   </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">str</span>(cell_counts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>'data.frame':   11 obs. of  8 variables:
- $ date                                    : chr  "1/14/2026" "1/16/2026" "1/20/2026" "1/23/2026" ...
- $ culture.volume..mL.                     : num  7 2.5 2.5 0.61 3.3 8.2 8.2 3.7 1.9 1.9 ...
- $ avg.live.cell.count.per.mL              : num  41100 283000 32900 694000 975000 531000 841000 505000 293000 370000 ...
- $ total.count                             : num  288000 708000 82300 423000 3220000 4350000 6900000 1870000 557000 703000 ...
- $ cells.brought.forward                   : num  2.88e+05 3.54e+05 4.00e+04 6.10e-01 5.00e+05 1.00e+06 5.00e+05 2.00e+05 2.50e+05 4.00e+05 ...
- $ new.culture.volume..mL.                 : num  2.87 3.5 0.82 4.2 5 10 5 2 2.5 4 ...
- $ concentration.of.cells.plated..cells.mL.: num  1.00e+05 1.01e+05 4.88e+04 1.45e-01 1.00e+05 1.00e+05 1.00e+05 1.00e+05 1.00e+05 1.00e+05 ...
- $ Notes                                   : chr  "HUDEP C2 vial thawed" "" "seems i did my math incorrectly here" "" ...</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">head</span>(cell_counts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a> <span class="co"># str(cell_counts)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">head</span>(cell_counts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       date culture.volume..mL. avg.live.cell.count.per.mL total.count
 1 1/14/2026                7.00                      41100      288000
@@ -209,35 +200,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 5                                       at this point, froze down other cells
 6 1/29/2026 Atesh plated 10mL of media for us, don't have the cell count data</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">summary</span>(cell_counts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>     date           culture.volume..mL. avg.live.cell.count.per.mL
- Length:11          Min.   :0.61        Min.   :  32900           
- Class :character   1st Qu.:2.20        1st Qu.: 288000           
- Mode  :character   Median :3.20        Median : 505000           
-                    Mean   :3.91        Mean   : 519636           
-                    3rd Qu.:5.35        3rd Qu.: 767500           
-                    Max.   :8.20        Max.   :1150000           
-  total.count      cells.brought.forward new.culture.volume..mL.
- Min.   :  82300   Min.   :      0.6     Min.   : 0.820         
- 1st Qu.: 490000   1st Qu.: 225000.0     1st Qu.: 2.500         
- Median : 708000   Median : 288000.0     Median : 3.500         
- Mean   :2071027   Mean   : 343818.2     Mean   : 3.854         
- 3rd Qu.:3450000   3rd Qu.: 450000.0     3rd Qu.: 4.600         
- Max.   :6900000   Max.   :1000000.0     Max.   :10.000         
- concentration.of.cells.plated..cells.mL.    Notes          
- Min.   :     0.14                        Length:11         
- 1st Qu.:100000.00                        Class :character  
- Median :100000.00                        Mode  :character  
- Mean   : 86345.47                                          
- 3rd Qu.:100000.00                                          
- Max.   :101000.00                                          </code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a> <span class="co"># summary(cell_counts)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># checking if my cell count data makes sense by trying some calculations</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>cell_sums <span class="ot">&lt;-</span> <span class="fu">sum</span>(cell_counts<span class="sc">$</span>total.count)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># checking if my cell count data makes sense by trying some calculations</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>cell_sums <span class="ot">&lt;-</span> <span class="fu">sum</span>(cell_counts<span class="sc">$</span>total.count)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="analysis-on-tidiness-of-data" class="level1">
+<h1>Analysis on tidiness of data</h1>
+<p>Based on the three tidy data principles, my data is almost tidy! Each column only contains one variable, and all the rows with observations contain only one observation. The part of my data that is not tidy is that not all cells contain a value. In my notes column, which by design is more or less a column meant for optional observations, some cells are empty since I had nothing out of the ordinary or to make note of when I plated those cells. To remedy this, I could add notes to all rows in that column, or simply fill it with N/A or none.</p>
+<p>After some more thought, I realized that the notes column in itself is actually quite problematic when it comes to tidy data. Filling a row with phrases technically makes it so that there is more than one observation in each row. The way I like to think about it is that if I wanted to perform some sort of analysis or graphing of my data including the notes, there would be no operation I could perform that could be informative. I cannot find the average of notes, nor can I make a graph of my notes column.</p>
+<p>Instead, it would be better to include my notes observations in my Quarto document, or to have them as a separate table filled with qualitative observations and not quantitative ones.</p>
+<p>In terms of <strong>primary</strong> keys, the best one to use would be the “date” column, as no values are repeated, unlike in other columns like the “concentration.of.cells.plated..cells.mL” column. I only have one table in this data set, thus there are <strong>no foreign keys</strong> for me to cross reference between two tables.</p>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>In conclusion, tidy data allows for us to more easily follow and analyze our data without having to do too much wrangling. To make my cell counts data tidier, I should remove the notes column and instead include that in a formal report or separate qualitative table. Once that is done, my cell counts data will fulfill the tidy data criteria of having one variable per column, one observation per row, and one value per cell.</p>
 </section>
 
 </main>
