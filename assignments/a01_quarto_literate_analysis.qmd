@@ -17,7 +17,9 @@ Source: <https://learning.nceas.ucsb.edu/2024-10-coreR/session_05.html>
 
 ## About the data
 
-The seawater chemistry dataset used here is `BGchem2008data.csv` (downloaded previously in the course).
+The Redfield Ratio was defined by observations made by scientist Albert Redfield that across all ocean environments, the ratio of carbon, nitrogen, and phosphorus in the oceans (C/N/P) was the same - (106:16:1). There is also a latitudinal effect where, in lower latitudes that are warm and nutrient-depleted, a ratio of 195:28:1 is observed, while in cold, nutrient-rich high latitude regions the ratio observed is 78:13:1. The Redfield Ratio can therefore be used to determine how balanced an ocean ecosystem is. We can then use this to ask questions about how aquatic life may have evolved in response to a changing global temperatures and nutrient availability.
+
+The seawater chemistry dataset used here is `BGchem2008data.csv` (downloaded previously in the course). This seawater chemistry dataset specifically looks at data from the Arctic Ocean.
 
 -   Date downloaded: August 8, 2025
 -   Download source: <https://arcticdata.io/metacat/d1/mn/v2/object/urn%3Auuid%3A35ad7624-b159-4e29-a700-0c0770419941>
@@ -40,7 +42,7 @@ Quarto runs R in the same way as a script: objects only exist after the chunks t
 Using `here()` is a convenient way to build paths relative to your project root (e.g., your `.qmd` might live in `scripts/` while data lives in `data/`).
 
 ```{r}
-bg_chem <- read_csv(here::here("data", "BGchem2008data.csv"))
+bg_chem <- read.csv(here::here("data","raw", "BGchem2008data.csv")) # use ../ to go up one directory
 ```
 
 (Optional) Quick peek at the data:
@@ -49,7 +51,7 @@ bg_chem <- read_csv(here::here("data", "BGchem2008data.csv"))
 # Uncomment if you want more inspection output
  names(bg_chem)
 # str(bg_chem)
-# head(bg_chem)
+ head(bg_chem)
 # summary(bg_chem)
 ```
 
@@ -92,6 +94,8 @@ plot(
   main = "Ocean water samples: total N vs P"
 )
 ```
+
+This plot depicts the ratio of nitrogen to phosphate, and demonstrates an almost linear correlation between the two such that as nitrogen levels increase, so do phosphate levels. It also shows how when there is low nitrogen, there is also low phosphorus in the Arctic Ocean seawater. Interestingly, there are many sites where low nitrogen and phosphorus were observed. There are also a few sites where the standard Redfield Ratio of 16:1 (N:P) is not observed in the Arctic Ocean, with ratios closer to 12:1 or even 3:1, a little more consistent with the Redfield Ratio observed in cold, high latitude regions. However, there are also many sites where the Redfield Ratio is close to expected, about 16:2 N:P.
 
 # Conclusion
 

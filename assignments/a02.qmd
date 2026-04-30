@@ -1,0 +1,76 @@
+---
+title: "a02"
+subtitle: "Practice with Tidy Data Using my Data"
+author: "Noor Abuzahriyeh"
+date: "March 3, 2026"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+execute:
+  warning: false
+  message: false
+---
+
+## Setup
+
+Best practice: put all `library()` calls in one chunk near the top so collaborators can see what packages are required.
+
+```{r}
+library(here) 
+library(readr)
+```
+
+# Introduction
+
+This Quarto document follows the **Week 5 Assignment 2 practice with Tidy Data.** In short, tidy data is a framework for organizing data that makes it straightforward and easy to follow. This document will explore whether a data set I have follows the Tidy Data principles. To recap, the three Tidy Data principles are as follows:
+
+1.  Each column has is one variable
+
+2.  Each row is one observation.
+
+3.  Each cell is one value.
+
+## About the data used
+
+I have been culturing Human umbilical cord blood derived erythroid progenitor cells over the past month or so. I have been seeding them at a density of 100,000 cells/mL, and over the course of culturing these cells, I have been recording the number of cells in my total culture to evaluate how well they are expanding. This data is compiled in a data file titled "BIOL806_cell_counts_data.csv".
+
+# Read in the data
+
+Quarto runs R in the same way as a script: objects only exist after the chunks that create them have been run.
+
+Using `here()` is a convenient way to build paths relative to your project root (e.g., your `.qmd` might live in `scripts/` while data lives in `data/`).
+
+```{r}
+cell_counts <- read.csv(here::here("data","raw", "BIOL806_cell_counts_data.csv")) # use ../ to go up one directory
+```
+
+(Optional) Quick peek at the data:
+
+```{r}
+# Uncomment if you want more inspection output
+ names(cell_counts)
+ # str(cell_counts)
+ head(cell_counts)
+ # summary(cell_counts)
+```
+
+```{r}
+# checking if my cell count data makes sense by trying some calculations
+cell_sums <- sum(cell_counts$total.count)
+
+```
+
+# Analysis on tidiness of data
+
+Based on the three tidy data principles, my data is almost tidy! Each column only contains one variable, and all the rows with observations contain only one observation. The part of my data that is not tidy is that not all cells contain a value. In my notes column, which by design is more or less a column meant for optional observations, some cells are empty since I had nothing out of the ordinary or to make note of when I plated those cells. To remedy this, I could add notes to all rows in that column, or simply fill it with N/A or none.
+
+After some more thought, I realized that the notes column in itself is actually quite problematic when it comes to tidy data. Filling a row with phrases technically makes it so that there is more than one observation in each row. The way I like to think about it is that if I wanted to perform some sort of analysis or graphing of my data including the notes, there would be no operation I could perform that could be informative. I cannot find the average of notes, nor can I make a graph of my notes column.
+
+Instead, it would be better to include my notes observations in my Quarto document, or to have them as a separate table filled with qualitative observations and not quantitative ones.
+
+In terms of **primary** keys, the best one to use would be the "date" column, as no values are repeated, unlike in other columns like the "concentration.of.cells.plated..cells.mL" column. I only have one table in this data set, thus there are **no foreign keys** for me to cross reference between two tables.
+
+# Conclusion
+
+In conclusion, tidy data allows for us to more easily follow and analyze our data without having to do too much wrangling. To make my cell counts data tidier, I should remove the notes column and instead include that in a formal report or separate qualitative table. Once that is done, my cell counts data will fulfill the tidy data criteria of having one variable per column, one observation per row, and one value per cell.
