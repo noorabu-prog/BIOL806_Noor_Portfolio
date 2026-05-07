@@ -4,7 +4,7 @@ author: Noor Abuzahriyeh
 editor: visual
 ---
 
-## Load libraries
+## Load necessary libraries
 
 ```{r}
 library(readr)
@@ -23,7 +23,7 @@ ak_rgns_sf <- read_sf(here("data/raw/ak_regions_simp.shp"))
 ```
 
 ```{r}
-# quick plot
+# quick plot to view the data
 plot(ak_rgns_sf)
 ```
 
@@ -110,10 +110,12 @@ pop_joined_sf <- st_join(pop_3338_sf,
 head(pop_joined_sf)
 ```
 
+The join was successful! Can now see the population data and the region data.
+
 ## calculating population size
 
 ```{r}
-
+# calculate population by bregion
 pop_rgn_df <- pop_joined_sf %>%
     st_drop_geometry() %>% # removing the sticky geometry
     group_by(region) %>%
@@ -135,6 +137,7 @@ plot(pop_rgn_3338_sf["total_pop"])
 ## Calculating by management areas rather than region
 
 ```{r}
+# calculate population by mgmt area
 pop_mgmt_3338_sf <- pop_rgn_3338_sf %>%
     group_by(mgmt_area) %>%
     summarize(total_pop = sum(total_pop)) # calulcating the total population by mgmt area
@@ -199,7 +202,7 @@ ggplot() +
     theme_bw()
 ```
 
-## incorporating basemaps 
+## incorporating basemaps
 
 ```{r}
 pop_3857_sf <- st_transform(pop_3338_sf, 
@@ -270,7 +273,7 @@ m <- leaflet(options = leafletOptions(crs = epsg3338)) %>%
 m
 ```
 
-# addding more to the individual communities
+# adding more to the individual communities
 
 ```{r}
 pal <- colorNumeric(palette = "Reds", domain = pop_rgn_4326_sf$total_pop)
