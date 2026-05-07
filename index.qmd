@@ -7,6 +7,9 @@ listing:
 ---
 
 Welcome!  
-This is my portfolio for learning **R, data analysis, GitHub, and Quarto**.
+This is my portfolio for learning **R, data analysis, GitHub, and Quarto**. Click the links below to see the assignments I have worked on throughout the semester that touch on these topics.
 
-## Assignments
+## Course Lessons
+- [Introduction to Literate Analysis using Quarto](assignments/a01_quarto_literate_analysis.html)
+- [Tidy Data](assignments/a02.html)
+- [Data Visualization](intro-to-spatial-data.html)
