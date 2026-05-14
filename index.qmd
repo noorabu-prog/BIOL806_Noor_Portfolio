@@ -1,5 +1,6 @@
 ---
 title: "Portfolio"
+author: Noor Abuzahriyeh
 listing:
   contents: assignments
   sort: "date asc"
